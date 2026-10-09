@@ -1,0 +1,83 @@
+$title
+$operating system unix
+$symmetry c1
+$user-defined bonds    file=coord
+$coord    file=coord
+$optimize
+ internal   off
+ redundant  off
+ cartesian  on
+ global     off
+ basis      off
+$atoms
+c  1,4,8,11,15-18,21-36,46,50,56,63                                            \
+   basis =c cc-pVDZ                                                            \
+   cbas  =c cc-pVDZ
+h  2-3,7,9-10,14,20,37-45,47-49,51-55,57-62,64-79                              \
+   basis =h cc-pVDZ                                                            \
+   cbas  =h cc-pVDZ
+o  5-6,12-13                                                                   \
+   basis =o cc-pVDZ                                                            \
+   cbas  =o cc-pVDZ
+n  19                                                                          \
+   basis =n cc-pVDZ                                                            \
+   cbas  =n cc-pVDZ
+$basis    file=basis
+$rundimensions
+   dim(fock,dens)=264006
+   natoms=79
+   nshell=336
+   nbf(CAO)=725
+   dim(trafo[SAO<-->AO/CAO])=791
+   rhfshells=1
+   nbf(AO)=692
+$scfmo   file=mos
+$closed shells
+ a       1-126                                  ( 2 )
+$scfiterlimit      300
+$scfconv        8
+$thize     0.10000000E-04
+$thime        5
+$scfdamp   start=0.300  step=0.050  min=0.100
+$scfdump
+$scfintunit
+ unit=30       size=0        file=twoint
+$scfdiis
+$maxcor    2000 MiB  per_core
+$scforbitalshift  automatic=.1
+$drvopt
+   cartesian  on
+   basis      off
+   global     off
+   hessian    on
+   dipole     on
+   nuclear polarizability
+$interconversion  off
+   qconv=1.d-7
+   maxiter=25
+$coordinateupdate
+   dqmax=0.3
+   interpolate  on
+   statistics    5
+$forceupdate
+   ahlrichs numgeo=0  mingeo=3 maxgeo=4 modus=<g|dq> dynamic fail=0.3
+   threig=0.005  reseig=0.005  thrbig=3.0  scale=1.00  damping=0.0
+$forceinit on
+   diag=default
+$energy    file=energy
+$grad    file=gradient
+$forceapprox    file=forceapprox
+$denconv     0.10000000E-06
+$point_charges nocheck file=ptchrg
+$freeze
+ implicit core=   33 virt=    0
+$cbas    file=auxbasis
+$ricc2
+  adc(2)
+$excitations
+  irrep=a  multiplicity=  1  nexc=  3  npre=  0  nstart=  0
+  spectrum  states=all  operators=diplen,dipvel,angmom
+$spectrum eV
+$cdspectrum eV
+$last step     define
+$end
